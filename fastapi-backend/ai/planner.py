@@ -75,8 +75,8 @@ class Plan:
         }
         
         symbol = status_symbol.get(task.status, "?")
-        result = "  " * indent + f"{symbol} {task.name}
-"
+        result = "  " * indent + f"{symbol} {task.name}\n"
+
         
         for subtask in task.subtasks:
             result += self.get_task_tree_string(subtask, indent + 1)
@@ -190,8 +190,8 @@ class HTNPlanner:
         self.plans[plan_id] = plan
         
         logger.info(f"HTN Plan created: {plan_id} for {emergency.type} emergency")
-        logger.debug(f"Plan tree:
-{plan.get_task_tree_string()}")
+        logger.debug(f"Plan tree:\n{plan.get_task_tree_string()}")
+
         
         return plan
     
@@ -424,9 +424,7 @@ class HTNPlanner:
             f"Vehicle {plan.vehicle_id} assigned. "
             f"Plan decomposed into {total_tasks} hierarchical tasks. "
             f"Progress: {completed_tasks}/{total_tasks} tasks completed. "
-            f"
-Plan Structure:
-{plan.get_task_tree_string()}"
+            f"Plan Structure: {plan.get_task_tree_string()}"
         )
         
         return explanation
